@@ -1,0 +1,16 @@
+{
+  "name": "calc-state-ts",
+  "version": "0.1.0",
+  "description": "Capture all properties of all possible graph states obtainable from Calc.getState() or from the Desmos server",
+  "main": "index.js",
+  "scripts": {
+    "compile-schema": "ts-to-json --path state.ts --type State > state.json",
+    "test-schema": "node testSchema.js"
+  },
+  "author": "fireflame241",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.6.0",
+    "ts-to-json": "^1.4.1"
+  }
+}

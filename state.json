@@ -430,7 +430,6 @@
                     "required": [
                       "color",
                       "id",
-                      "latex",
                       "type"
                     ],
                     "additionalProperties": false
@@ -685,7 +684,7 @@
         "expressions"
       ],
       "additionalProperties": false,
-      "description": "This is supposed to capture all properties of all possible graph states\nobtainable from Calc.getState() or via the Desmos server.\n\nTo compile to JSON:\n  $ ts-to-json --path state.ts --type State > state.json\n\n   - This specifies additionalProperties: false and should discern what\n     properties are required (other generators did not do this)\n\nCurrent inaccuracies:\n  - should optional booleans be `key?: true` or `key?: boolean`?\n  - a few others; Ctrl+F for \"???\"\n  - probably a lot more\n\nUseful sources:\n  - core/types/*\n  - graphing-calc/models/*\n  - core/graphing-calc/json/*"
+      "description": "Useful sources:\n  - core/types/*\n  - graphing-calc/models/*\n  - core/graphing-calc/json/*"
     }
   }
 }

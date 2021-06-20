@@ -1,0 +1,134 @@
+{
+  "version": 8,
+  "graph": {
+    "viewport": {
+      "xmin": -10,
+      "ymin": -10.796857463524127,
+      "xmax": 10,
+      "ymax": 10.79685746352413
+    }
+  },
+  "randomSeed": "67d4c0cb593c7077b43c57ef9cb70523",
+  "expressions": {
+    "list": [
+      {
+        "type": "expression",
+        "id": "6",
+        "color": "#000000",
+        "latex": "\\tan\\left(35.6x\\right)=0",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "7",
+        "color": "#c74440",
+        "latex": "w=20"
+      },
+      {
+        "type": "expression",
+        "id": "15",
+        "color": "#388c46",
+        "latex": "W=w\\left(1+\\frac{4}{32}\\right)+2^{-48}"
+      },
+      {
+        "type": "expression",
+        "id": "11",
+        "color": "#6042a6",
+        "latex": "h=20"
+      },
+      {
+        "type": "expression",
+        "id": "16",
+        "color": "#6042a6",
+        "latex": "H=h\\left(1+\\frac{4}{32}\\right)"
+      },
+      {
+        "type": "folder",
+        "id": "23",
+        "title": "Sketch Lines",
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "8",
+        "folderId": "23",
+        "color": "#c74440",
+        "latex": "x=\\left[-\\frac{1}{4},\\ -\\frac{3}{8},\\ -\\frac{5}{16},\\ -\\frac{9}{32},\\ -\\frac{17}{64}\\right]W",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "10",
+        "folderId": "23",
+        "color": "#c74440",
+        "latex": "y=\\left[0,\\ -\\frac{1}{4},\\ -\\frac{1}{8},\\ -\\frac{1}{16},\\ -\\frac{3}{32},\\ -\\frac{5}{64}\\right]H",
+        "hidden": true
+      },
+      {
+        "type": "folder",
+        "id": "25",
+        "title": "Bernard Drawn with separate rectangles",
+        "hidden": true,
+        "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "12",
+        "folderId": "25",
+        "color": "#388c46",
+        "latex": "-\\frac{1}{4}H<y<-\\frac{1}{8}H\\left\\{-\\frac{w}{2}<x<-\\frac{1}{4}W\\right\\}",
+        "lines": false
+      },
+      {
+        "type": "expression",
+        "id": "17",
+        "folderId": "25",
+        "color": "#388c46",
+        "latex": "-\\frac{1}{16}H<y<0\\left\\{-\\frac{3}{8}W<x<-\\frac{1}{4}W\\right\\}",
+        "lines": false
+      },
+      {
+        "type": "expression",
+        "id": "18",
+        "folderId": "25",
+        "color": "#388c46",
+        "latex": "-\\frac{1}{8}H<y<-\\frac{3}{32}H\\left\\{-\\frac{5}{16}W<x<-\\frac{1}{4}W\\right\\}",
+        "lines": false
+      },
+      {
+        "type": "expression",
+        "id": "20",
+        "folderId": "25",
+        "color": "#388c46",
+        "latex": "-\\frac{5}{64}H<y<-\\frac{1}{16}H\\left\\{-\\frac{9}{32}W<x<-\\frac{1}{4}W\\right\\}",
+        "lines": false
+      },
+      {
+        "type": "expression",
+        "id": "21",
+        "folderId": "25",
+        "color": "#388c46",
+        "latex": "-\\frac{3}{32}H<y<-\\frac{5}{64}H\\left\\{-\\frac{17}{64}W<x<-\\frac{1}{4}W\\right\\}",
+        "lines": false
+      },
+      {
+        "type": "folder",
+        "id": "26",
+        "title": "Bernard drawn with a single expression"
+      },
+      {
+        "type": "expression",
+        "id": "27",
+        "folderId": "26",
+        "color": "#388c46",
+        "latex": "0\\le\\left\\{-\\frac{1}{4}H<y<-\\frac{1}{8}H,0\\right\\}\\left\\{-\\frac{w}{2}<x<-\\frac{1}{4}W,0\\right\\}+\\left\\{-\\frac{1}{16}H<y<0,0\\right\\}\\left\\{-\\frac{3}{8}W<x<-\\frac{1}{4}W,0\\right\\}+\\left\\{-\\frac{1}{8}H<y<-\\frac{3}{32}H,0\\right\\}\\left\\{-\\frac{5}{16}W<x<-\\frac{1}{4}W,0\\right\\}+\\left\\{-\\frac{5}{64}H<y<-\\frac{1}{16}H,0\\right\\}\\left\\{-\\frac{9}{32}W<x<-\\frac{1}{4}W,0\\right\\}+\\left\\{-\\frac{3}{32}H<y<-\\frac{5}{64}H,0\\right\\}\\left\\{-\\frac{17}{64}W<x<-\\frac{1}{4}W,0\\right\\}",
+        "fillOpacity": "0.3"
+      },
+      {
+        "type": "expression",
+        "id": "28",
+        "color": "#000000"
+      }
+    ]
+  }
+}

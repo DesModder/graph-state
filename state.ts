@@ -1,17 +1,4 @@
 /**
- * This is supposed to capture all properties of all possible graph states
- * obtainable from Calc.getState() or via the Desmos server.
- *
- * To compile to JSON:
- *  $ ts-to-json --path state.ts --type State > state.json
- *
- *   - This specifies additionalProperties: false and should discern what
- *     properties are required (other generators did not do this)
- *
- * Current inaccuracies:
- *  - should optional booleans be `key?: true` or `key?: boolean`?
- *  - a few others; Ctrl+F for "???"
- *  - probably a lot more
  *
  * Useful sources:
  *  - core/types/*
@@ -101,7 +88,7 @@ type LabelOrientation =
 interface ExpressionState extends NonfolderModel {
   type: "expression";
   color: string;
-  latex: Latex;
+  latex?: Latex;
   showLabel?: boolean;
   label?: string;
   hidden?: boolean;
