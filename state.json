@@ -6,7 +6,10 @@
       "type": "object",
       "properties": {
         "version": {
-          "type": "number"
+          "type": "number",
+          "enum": [
+            8
+          ]
         },
         "randomSeed": {
           "type": "string"

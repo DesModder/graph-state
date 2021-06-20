@@ -1,12 +1,11 @@
 /**
- *
  * Useful sources:
  *  - core/types/*
  *  - graphing-calc/models/*
  *  - core/graphing-calc/json/*
  */
 export interface State {
-  version: number;
+  version: 8;
   randomSeed: string;
   graph: GrapherState;
   expressions: {
