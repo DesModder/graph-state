@@ -1,0 +1,385 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/State",
+  "definitions": {
+    "State": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "number"
+        },
+        "randomSeed": {
+          "type": "string"
+        },
+        "graph": {
+          "type": "object",
+          "properties": {
+            "viewport": {
+              "type": "object",
+              "properties": {
+                "xmin": {
+                  "type": "number"
+                },
+                "ymin": {
+                  "type": "number"
+                },
+                "xmax": {
+                  "type": "number"
+                },
+                "ymax": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "xmin",
+                "ymin",
+                "xmax",
+                "ymax"
+              ],
+              "additionalProperties": false
+            },
+            "xAxisMinorSubdivisions": {
+              "type": "number"
+            },
+            "yAxisMinorSubdivisions": {
+              "type": "number"
+            },
+            "degreeMode": {
+              "type": "boolean"
+            },
+            "showGrid": {
+              "type": "boolean"
+            },
+            "showXAxis": {
+              "type": "boolean"
+            },
+            "showYAxis": {
+              "type": "boolean"
+            },
+            "xAxisNumbers": {
+              "type": "boolean"
+            },
+            "yAxisNumbers": {
+              "type": "boolean"
+            },
+            "polarNumbers": {
+              "type": "boolean"
+            },
+            "enableTabindex": {
+              "type": "boolean"
+            },
+            "xAxisStep": {
+              "type": "number"
+            },
+            "yAxisStep": {
+              "type": "number"
+            },
+            "xAxisArrowMode": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "POSITIVE",
+                "BOTH"
+              ]
+            },
+            "yAxisArrowMode": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "POSITIVE",
+                "BOTH"
+              ]
+            },
+            "xAxisLabel": {
+              "type": "string"
+            },
+            "yAxisLabel": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "viewport",
+            "xAxisMinorSubdivisions",
+            "yAxisMinorSubdivisions",
+            "degreeMode",
+            "showGrid",
+            "showXAxis",
+            "showYAxis",
+            "xAxisNumbers",
+            "yAxisNumbers",
+            "polarNumbers",
+            "enableTabindex",
+            "xAxisStep",
+            "yAxisStep",
+            "xAxisArrowMode",
+            "yAxisArrowMode",
+            "xAxisLabel",
+            "yAxisLabel"
+          ],
+          "additionalProperties": false
+        },
+        "expressions": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "secret": {
+                    "type": "boolean"
+                  },
+                  "folderId": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "image"
+                    ]
+                  },
+                  "image_url": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "hidden": {
+                    "type": "boolean"
+                  },
+                  "foreground": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "folderId",
+                  "foreground",
+                  "hidden",
+                  "id",
+                  "image_url",
+                  "name",
+                  "secret",
+                  "type"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "secret": {
+                    "type": "boolean"
+                  },
+                  "folderId": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "table"
+                    ]
+                  },
+                  "columns": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "values": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "color": {
+                          "type": "string"
+                        },
+                        "latex": {
+                          "type": "string"
+                        },
+                        "hidden": {
+                          "type": "boolean"
+                        },
+                        "points": {
+                          "type": "boolean"
+                        },
+                        "lines": {
+                          "type": "boolean"
+                        },
+                        "dragMode": {
+                          "type": "string",
+                          "enum": [
+                            "NONE",
+                            "X",
+                            "Y",
+                            "XY",
+                            "AUTO"
+                          ]
+                        },
+                        "lineStyle": {
+                          "type": "string",
+                          "enum": [
+                            "SOLID",
+                            "DASHED",
+                            "DOTTED"
+                          ]
+                        },
+                        "pointStyle": {
+                          "type": "string",
+                          "enum": [
+                            "POINT",
+                            "OPEN",
+                            "CROSS"
+                          ]
+                        },
+                        "colorLatex": {
+                          "type": "string"
+                        },
+                        "lineOpacity": {
+                          "type": "string"
+                        },
+                        "lineWidth": {
+                          "type": "string"
+                        },
+                        "pointSize": {
+                          "type": "string"
+                        },
+                        "pointOpacity": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "values",
+                        "color"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "columns",
+                  "folderId",
+                  "id",
+                  "secret",
+                  "type"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "secret": {
+                    "type": "boolean"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "folder"
+                    ]
+                  },
+                  "hidden": {
+                    "type": "boolean"
+                  },
+                  "collapsed": {
+                    "type": "boolean"
+                  },
+                  "title": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "secret",
+                  "type"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "secret": {
+                    "type": "boolean"
+                  },
+                  "folderId": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "text"
+                    ]
+                  },
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "folderId",
+                  "id",
+                  "secret",
+                  "type"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "secret": {
+                    "type": "boolean"
+                  },
+                  "folderId": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "simulation"
+                    ]
+                  },
+                  "isPlaying": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "folderId",
+                  "id",
+                  "secret",
+                  "type"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "version",
+        "randomSeed",
+        "graph",
+        "expressions"
+      ],
+      "additionalProperties": false,
+      "description": "This is supposed to capture all properties of all possible graph states\nobtainable from Calc.getState() or via the Desmos server.\n\nTo compile to JSON:\n  $ ts-to-json --path state.ts --type State > state.json\n\nCurrent inaccuracies:\n  - ExpressionState\n  - some optional keys, such as in GrapherState\n  - probably a lot more"
+    }
+  }
+}
