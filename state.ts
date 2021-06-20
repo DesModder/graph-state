@@ -6,7 +6,7 @@
  */
 export interface State {
   version: 8;
-  randomSeed: string;
+  randomSeed?: string;
   graph: GrapherState;
   expressions: {
     list: ListState;
@@ -83,6 +83,12 @@ type LabelOrientation =
   | "auto_left"
   | "right"
   | "auto_right";
+
+type ClickableInfoRules = {
+  id: string;
+  expression: Latex;
+  assignment: Latex;
+}[];
 
 interface ExpressionState extends NonfolderModel {
   type: "expression";
@@ -161,11 +167,7 @@ interface ExpressionState extends NonfolderModel {
     enabled: boolean;
     // description is the screen reader label
     description?: string;
-    rules?: {
-      id: string;
-      expression: Latex;
-      assignment: Latex;
-    }[];
+    rules?: ClickableInfoRules;
   };
 }
 
@@ -215,4 +217,8 @@ interface TextState extends NonfolderModel {
 interface SimulationState extends NonfolderModel {
   type: "simulation";
   isPlaying?: boolean;
+  fps: Latex;
+  clickableInfo: {
+    rules: ClickableInfoRules;
+  };
 }

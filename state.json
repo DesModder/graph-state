@@ -662,9 +662,46 @@
                       },
                       "isPlaying": {
                         "type": "boolean"
+                      },
+                      "fps": {
+                        "type": "string"
+                      },
+                      "clickableInfo": {
+                        "type": "object",
+                        "properties": {
+                          "rules": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "expression": {
+                                  "type": "string"
+                                },
+                                "assignment": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "expression",
+                                "assignment"
+                              ],
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "required": [
+                          "rules"
+                        ],
+                        "additionalProperties": false
                       }
                     },
                     "required": [
+                      "clickableInfo",
+                      "fps",
                       "id",
                       "type"
                     ],
@@ -682,7 +719,6 @@
       },
       "required": [
         "version",
-        "randomSeed",
         "graph",
         "expressions"
       ],

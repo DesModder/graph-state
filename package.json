@@ -4,7 +4,7 @@
   "description": "Typescript definitions for all possible Desmos graph states.",
   "main": "index.js",
   "scripts": {
-    "compile-schema": "ts-to-json --path state.ts --type State > state.json",
+    "build-schema": "ts-to-json --path state.ts --type State > state.json",
     "test-schema": "node testSchema.js"
   },
   "author": "fireflame241",
