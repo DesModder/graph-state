@@ -101,7 +101,7 @@ interface Domain {
 
 interface MaybeClickable {
   clickableInfo?: {
-    enabled: boolean;
+    enabled?: boolean;
     // description is the screen reader label
     description?: string;
     rules?: ClickableInfoRules;
@@ -126,7 +126,7 @@ interface ExpressionState extends NonfolderModel, MaybeClickable {
   extendedLabelOrientation?: LabelOrientation;
   suppressTextOutline?: boolean;
   interactiveLabel?: boolean;
-  editableLabelMode?: boolean;
+  editableLabelMode?: "MATH" | "TEXT";
   residualVariable?: Latex;
   regressionParameters?: {
     // key is a LaTeX identifier
@@ -236,9 +236,9 @@ interface SimulationState extends NonfolderModel {
   type: "simulation";
   isPlaying?: boolean;
   fps?: Latex;
-  clickableInfo: {
+  clickableInfo?: {
     rules: ClickableInfoRules;
-    // enabled appears removed. Only saw it in one of my graphs.
+    // enabled appears removed. Only saw it in one of my graphs, so it might be manually placed there
     enabled?: boolean;
   };
 }

@@ -160,9 +160,6 @@
                             }
                           }
                         },
-                        "required": [
-                          "enabled"
-                        ],
                         "additionalProperties": false
                       },
                       "id": {
@@ -282,7 +279,11 @@
                         "type": "boolean"
                       },
                       "editableLabelMode": {
-                        "type": "boolean"
+                        "type": "string",
+                        "enum": [
+                          "MATH",
+                          "TEXT"
+                        ]
                       },
                       "residualVariable": {
                         "type": "string"
@@ -527,9 +528,6 @@
                             }
                           }
                         },
-                        "required": [
-                          "enabled"
-                        ],
                         "additionalProperties": false
                       },
                       "id": {
@@ -814,7 +812,6 @@
                       }
                     },
                     "required": [
-                      "clickableInfo",
                       "id",
                       "type"
                     ],

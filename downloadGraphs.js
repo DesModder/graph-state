@@ -30,8 +30,8 @@ function downloadHash(hashIndex) {
   download(
     `https://saved-work.desmos.com/calc-states/production/${hash}`,
     `./calc_states/${hash}.json`,
-    // short timeout to be nice to server
-    () => setTimeout(() => downloadHash(hashIndex + 1), 300)
+    // timeout to be nice to server
+    () => setTimeout(() => downloadHash(hashIndex + 1), 400)
   );
 }
 

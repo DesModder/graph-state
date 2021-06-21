@@ -17,3 +17,5 @@ Desmos is subject to change at any time, and this repository may become out-of-d
 Any graph state obtainable through `Calc.getState()` should be accepted by the `State` interface. (If you have any incompatabilities, raise them on the GitHub issue tracker).
 
 There are some properties where the `State` interface is broader. For example, default properties (such as `hidden: false` on an expression) are never included in the graph state from `Calc.getState()`, but they are allowed in the type definitions because scripts may want to output a state that includes the properties without needing to handle excluding the property (such as by using `hidden: booleanVariable`), and Desmos handles these as expected.
+
+Keep in mind that the Desmos server does not perform full server-side validation on uploaded graph states, so a user could set them to anything by changing the server request. Similarly, `Calc.setState()` expands the full set of possible graph states; for example, it accepts `number`s in place of `Latex`.
