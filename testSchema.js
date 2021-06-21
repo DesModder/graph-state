@@ -1,7 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 const Ajv = require("ajv");
-const ajv = new Ajv(); // options can be passed, e.g. {allErrors: true}
+const ajv = new Ajv({
+  allowUnionTypes: true, // to allow `string | number`
+});
 
 const schema = JSON.parse(fs.readFileSync("./state.json"));
 const validate = ajv.compile(schema);
@@ -21,13 +23,10 @@ fs.readdirSync("./calc_states").forEach((filename) => {
   total += 1;
   if (valid) {
     successes += 1;
-    console.log(graphID, "PASS");
   } else {
-    const printedErrors = [validate.errors[0]];
-    if (validate.errors.length > 1) printedErrors.push("...");
-    console.log(graphID, "FAIL", printedErrors);
+    console.log(graphID, "FAIL", validate.errors);
   }
 });
 console.log(
-  `\nTesting finished: ${successes}/${total} version-8 graphs passed. ${wrongVersion} graphs are of a lower version`
+  `\nTesting finished: ${successes}/${total} version-8 graphs passed. Skipped ${wrongVersion} graphs (different versions).`
 );

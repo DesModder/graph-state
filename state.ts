@@ -38,6 +38,9 @@ interface GrapherState {
   yAxisArrowMode?: ArrowMode;
   xAxisLabel?: string;
   yAxisLabel?: string;
+  squareAxes?: boolean;
+  restrictGridToFirstQuadrant?: boolean;
+  polarMode?: boolean;
 }
 
 type Latex = string;
@@ -65,7 +68,7 @@ interface NonfolderModel extends BaseItemModel {
 type LineStyle = "SOLID" | "DASHED" | "DOTTED";
 type PointStyle = "POINT" | "OPEN" | "CROSS";
 type DragMode = "NONE" | "X" | "Y" | "XY" | "AUTO";
-type LabelSize = "SMALL" | "MEDIUM" | "LARGE";
+type LabelSize = "SMALL" | "MEDIUM" | "LARGE" | Latex;
 type LabelOrientation =
   | "default"
   | "center"
@@ -85,12 +88,26 @@ type LabelOrientation =
   | "auto_right";
 
 type ClickableInfoRules = {
-  id: string;
+  // appears that `id: number` is removed
+  id: string | number;
   expression: Latex;
   assignment: Latex;
 }[];
 
-interface ExpressionState extends NonfolderModel {
+interface Domain {
+  min: Latex;
+  max: Latex;
+}
+
+interface MaybeClickable {
+  clickableInfo?: {
+    enabled: boolean;
+    // description is the screen reader label
+    description?: string;
+    rules?: ClickableInfoRules;
+  };
+}
+interface ExpressionState extends NonfolderModel, MaybeClickable {
   type: "expression";
   color: string;
   latex?: Latex;
@@ -105,6 +122,8 @@ interface ExpressionState extends NonfolderModel {
   dragMode?: DragMode;
   labelSize?: LabelSize;
   labelOrientation?: LabelOrientation;
+  // extendedLabelOrientation seems like it is renamed to labelOrientation in state version 9
+  extendedLabelOrientation?: LabelOrientation;
   suppressTextOutline?: boolean;
   interactiveLabel?: boolean;
   editableLabelMode?: boolean;
@@ -130,14 +149,10 @@ interface ExpressionState extends NonfolderModel {
     max?: Latex;
     step?: Latex;
   };
-  polarDomain?: {
-    min: Latex;
-    max: Latex;
-  };
-  parametricDomain?: {
-    min: Latex;
-    max: Latex;
-  };
+  polarDomain?: Domain;
+  parametricDomain?: Domain;
+  // seems like `domain` may be the same as `parametricDomain`
+  domain?: Domain;
   cdf?: {
     show: boolean;
     min?: Latex;
@@ -155,6 +170,9 @@ interface ExpressionState extends NonfolderModel {
     axisOffset?: Latex;
     alignedAxis?: "x" | "y";
     showBoxplotOutliers?: boolean;
+    // dotplotSize is removed in state version 9
+    // "small" corresponds to pointSize=9; "large" corresponds to pointSize=20
+    dotplotSize?: "small" | "large";
     binAlignment?: "left" | "center";
     // the string "binned" is never actually checked,
     // just inferred by the absence of "exact"
@@ -163,20 +181,20 @@ interface ExpressionState extends NonfolderModel {
     // just inferred by the absence of "relative" and "density"
     histogramMode?: "count" | "relative" | "density";
   };
-  clickableInfo?: {
-    enabled: boolean;
-    // description is the screen reader label
-    description?: string;
-    rules?: ClickableInfoRules;
-  };
 }
 
-interface ImageState extends NonfolderModel {
+interface ImageState extends NonfolderModel, MaybeClickable {
   type: "image";
   image_url: string;
   name: string;
-  hidden: boolean;
-  foreground: boolean;
+  width?: Latex;
+  height?: Latex;
+  hidden?: boolean;
+  center?: Latex;
+  angle?: Latex;
+  opacity?: Latex;
+  foreground?: boolean;
+  draggable?: boolean;
 }
 
 interface TableColumn {
@@ -217,8 +235,10 @@ interface TextState extends NonfolderModel {
 interface SimulationState extends NonfolderModel {
   type: "simulation";
   isPlaying?: boolean;
-  fps: Latex;
+  fps?: Latex;
   clickableInfo: {
     rules: ClickableInfoRules;
+    // enabled appears removed. Only saw it in one of my graphs.
+    enabled?: boolean;
   };
 }

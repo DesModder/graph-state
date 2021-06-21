@@ -98,6 +98,15 @@
             },
             "yAxisLabel": {
               "type": "string"
+            },
+            "squareAxes": {
+              "type": "boolean"
+            },
+            "restrictGridToFirstQuadrant": {
+              "type": "boolean"
+            },
+            "polarMode": {
+              "type": "boolean"
             }
           },
           "required": [
@@ -115,6 +124,47 @@
                   {
                     "type": "object",
                     "properties": {
+                      "clickableInfo": {
+                        "type": "object",
+                        "properties": {
+                          "enabled": {
+                            "type": "boolean"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "rules": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": [
+                                    "string",
+                                    "number"
+                                  ]
+                                },
+                                "expression": {
+                                  "type": "string"
+                                },
+                                "assignment": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "expression",
+                                "assignment"
+                              ],
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "required": [
+                          "enabled"
+                        ],
+                        "additionalProperties": false
+                      },
                       "id": {
                         "type": "string"
                       },
@@ -181,14 +231,30 @@
                         ]
                       },
                       "labelSize": {
-                        "type": "string",
-                        "enum": [
-                          "SMALL",
-                          "MEDIUM",
-                          "LARGE"
-                        ]
+                        "type": "string"
                       },
                       "labelOrientation": {
+                        "type": "string",
+                        "enum": [
+                          "default",
+                          "center",
+                          "center_auto",
+                          "auto_center",
+                          "above",
+                          "above_left",
+                          "above_right",
+                          "above_auto",
+                          "below",
+                          "below_left",
+                          "below_right",
+                          "below_auto",
+                          "left",
+                          "auto_left",
+                          "right",
+                          "auto_right"
+                        ]
+                      },
+                      "extendedLabelOrientation": {
                         "type": "string",
                         "enum": [
                           "default",
@@ -308,6 +374,22 @@
                         ],
                         "additionalProperties": false
                       },
+                      "domain": {
+                        "type": "object",
+                        "properties": {
+                          "min": {
+                            "type": "string"
+                          },
+                          "max": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "min",
+                          "max"
+                        ],
+                        "additionalProperties": false
+                      },
                       "cdf": {
                         "type": "object",
                         "properties": {
@@ -366,6 +448,13 @@
                           "showBoxplotOutliers": {
                             "type": "boolean"
                           },
+                          "dotplotSize": {
+                            "type": "string",
+                            "enum": [
+                              "small",
+                              "large"
+                            ]
+                          },
                           "binAlignment": {
                             "type": "string",
                             "enum": [
@@ -390,7 +479,18 @@
                           }
                         },
                         "additionalProperties": false
-                      },
+                      }
+                    },
+                    "required": [
+                      "color",
+                      "id",
+                      "type"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
                       "clickableInfo": {
                         "type": "object",
                         "properties": {
@@ -406,7 +506,10 @@
                               "type": "object",
                               "properties": {
                                 "id": {
-                                  "type": "string"
+                                  "type": [
+                                    "string",
+                                    "number"
+                                  ]
                                 },
                                 "expression": {
                                   "type": "string"
@@ -428,18 +531,7 @@
                           "enabled"
                         ],
                         "additionalProperties": false
-                      }
-                    },
-                    "required": [
-                      "color",
-                      "id",
-                      "type"
-                    ],
-                    "additionalProperties": false
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
+                      },
                       "id": {
                         "type": "string"
                       },
@@ -461,16 +553,32 @@
                       "name": {
                         "type": "string"
                       },
+                      "width": {
+                        "type": "string"
+                      },
+                      "height": {
+                        "type": "string"
+                      },
                       "hidden": {
                         "type": "boolean"
                       },
+                      "center": {
+                        "type": "string"
+                      },
+                      "angle": {
+                        "type": "string"
+                      },
+                      "opacity": {
+                        "type": "string"
+                      },
                       "foreground": {
+                        "type": "boolean"
+                      },
+                      "draggable": {
                         "type": "boolean"
                       }
                     },
                     "required": [
-                      "foreground",
-                      "hidden",
                       "id",
                       "image_url",
                       "name",
@@ -675,7 +783,10 @@
                               "type": "object",
                               "properties": {
                                 "id": {
-                                  "type": "string"
+                                  "type": [
+                                    "string",
+                                    "number"
+                                  ]
                                 },
                                 "expression": {
                                   "type": "string"
@@ -691,6 +802,9 @@
                               ],
                               "additionalProperties": false
                             }
+                          },
+                          "enabled": {
+                            "type": "boolean"
                           }
                         },
                         "required": [
@@ -701,7 +815,6 @@
                     },
                     "required": [
                       "clickableInfo",
-                      "fps",
                       "id",
                       "type"
                     ],
