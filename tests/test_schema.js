@@ -5,7 +5,7 @@ const ajv = new Ajv({
   allowUnionTypes: true, // to allow `string | number`
 });
 
-const schema = JSON.parse(fs.readFileSync("./state.json"));
+const schema = JSON.parse(fs.readFileSync("../state_schema.json"));
 const validate = ajv.compile(schema);
 
 let successes = 0;
