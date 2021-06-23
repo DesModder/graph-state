@@ -139,10 +139,7 @@
                               "type": "object",
                               "properties": {
                                 "id": {
-                                  "type": [
-                                    "string",
-                                    "number"
-                                  ]
+                                  "type": "string"
                                 },
                                 "expression": {
                                   "type": "string"
@@ -223,8 +220,7 @@
                           "NONE",
                           "X",
                           "Y",
-                          "XY",
-                          "AUTO"
+                          "XY"
                         ]
                       },
                       "labelSize": {
@@ -456,18 +452,18 @@
                               "large"
                             ]
                           },
-                          "binAlignment": {
-                            "type": "string",
-                            "enum": [
-                              "left",
-                              "center"
-                            ]
-                          },
                           "dotplotXMode": {
                             "type": "string",
                             "enum": [
                               "exact",
                               "binned"
+                            ]
+                          },
+                          "binAlignment": {
+                            "type": "string",
+                            "enum": [
+                              "left",
+                              "center"
                             ]
                           },
                           "histogramMode": {
@@ -507,10 +503,7 @@
                               "type": "object",
                               "properties": {
                                 "id": {
-                                  "type": [
-                                    "string",
-                                    "number"
-                                  ]
+                                  "type": "string"
                                 },
                                 "expression": {
                                   "type": "string"
@@ -579,7 +572,6 @@
                     "required": [
                       "id",
                       "image_url",
-                      "name",
                       "type"
                     ],
                     "additionalProperties": false
@@ -637,8 +629,7 @@
                                 "NONE",
                                 "X",
                                 "Y",
-                                "XY",
-                                "AUTO"
+                                "XY"
                               ]
                             },
                             "lineStyle": {
@@ -781,10 +772,7 @@
                               "type": "object",
                               "properties": {
                                 "id": {
-                                  "type": [
-                                    "string",
-                                    "number"
-                                  ]
+                                  "type": "string"
                                 },
                                 "expression": {
                                   "type": "string"

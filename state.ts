@@ -22,16 +22,21 @@ interface GrapherState {
     xmax: number;
     ymax: number;
   };
+  // {x,y}AxisMinorSubdivisions appears to be either 5 or 0 (disabled)
+  // but Desmos accepts other subdivisions
   xAxisMinorSubdivisions?: number;
   yAxisMinorSubdivisions?: number;
   degreeMode?: boolean;
   showGrid?: boolean;
   showXAxis?: boolean;
   showYAxis?: boolean;
+  // the UI appears to only have xAxisNumbers = yAxisNumbers = polarNumbers
   xAxisNumbers?: boolean;
   yAxisNumbers?: boolean;
   polarNumbers?: boolean;
   enableTabindex?: boolean;
+  // {x,y}AxisStep are interesting. The user can put any LaTeX, but the result is stored as a
+  // number and displayed as a number or multiple of pi
   xAxisStep?: number;
   yAxisStep?: number;
   xAxisArrowMode?: ArrowMode;
@@ -67,7 +72,7 @@ interface NonfolderModel extends BaseItemModel {
 
 type LineStyle = "SOLID" | "DASHED" | "DOTTED";
 type PointStyle = "POINT" | "OPEN" | "CROSS";
-type DragMode = "NONE" | "X" | "Y" | "XY" | "AUTO";
+type DragMode = "NONE" | "X" | "Y" | "XY";
 type LabelSize = "SMALL" | "MEDIUM" | "LARGE" | Latex;
 type LabelOrientation =
   | "default"
@@ -89,7 +94,7 @@ type LabelOrientation =
 
 type ClickableInfoRules = {
   // appears that `id: number` is removed
-  id: string | number;
+  id: string;
   expression: Latex;
   assignment: Latex;
 }[];
@@ -121,10 +126,12 @@ interface ExpressionState extends NonfolderModel, MaybeClickable {
   fill?: boolean;
   dragMode?: DragMode;
   labelSize?: LabelSize;
+  // Type of labelOrientation is too broad
   labelOrientation?: LabelOrientation;
   // extendedLabelOrientation seems like it is renamed to labelOrientation in state version 9
   extendedLabelOrientation?: LabelOrientation;
   suppressTextOutline?: boolean;
+  // interactiveLabel is show-on-hover
   interactiveLabel?: boolean;
   editableLabelMode?: "MATH" | "TEXT";
   residualVariable?: Latex;
@@ -166,17 +173,22 @@ interface ExpressionState extends NonfolderModel, MaybeClickable {
   lineWidth?: Latex;
   labelAngle?: Latex;
   vizProps?: {
+    // -- Applies to boxplot only:
+    // axisOffset=offset and breadth=height (boxplots only)
     breadth?: Latex;
     axisOffset?: Latex;
     alignedAxis?: "x" | "y";
     showBoxplotOutliers?: boolean;
+    // -- Applies to dotplot only:
     // dotplotSize is removed in state version 9
     // "small" corresponds to pointSize=9; "large" corresponds to pointSize=20
     dotplotSize?: "small" | "large";
-    binAlignment?: "left" | "center";
     // the string "binned" is never actually checked,
     // just inferred by the absence of "exact"
     dotplotXMode?: "exact" | "binned";
+    // -- applies to dotplot and histogram only:
+    binAlignment?: "left" | "center";
+    // -- applies to histogram only:
     // the string "count" is never actually checked,
     // just inferred by the absence of "relative" and "density"
     histogramMode?: "count" | "relative" | "density";
@@ -186,7 +198,7 @@ interface ExpressionState extends NonfolderModel, MaybeClickable {
 interface ImageState extends NonfolderModel, MaybeClickable {
   type: "image";
   image_url: string;
-  name: string;
+  name?: string;
   width?: Latex;
   height?: Latex;
   hidden?: boolean;
