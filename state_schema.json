@@ -68,9 +68,6 @@
             "polarNumbers": {
               "type": "boolean"
             },
-            "enableTabindex": {
-              "type": "boolean"
-            },
             "xAxisStep": {
               "type": "number"
             },

@@ -34,7 +34,6 @@ interface GrapherState {
   xAxisNumbers?: boolean;
   yAxisNumbers?: boolean;
   polarNumbers?: boolean;
-  enableTabindex?: boolean;
   // {x,y}AxisStep are interesting. The user can put any LaTeX, but the result is stored as a
   // number and displayed as a number or multiple of pi
   xAxisStep?: number;
