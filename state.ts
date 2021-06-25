@@ -13,9 +13,9 @@ export interface State {
   };
 }
 
-type ArrowMode = "NONE" | "POSITIVE" | "BOTH";
+export type ArrowMode = "NONE" | "POSITIVE" | "BOTH";
 
-interface GrapherState {
+export interface GrapherState {
   viewport: {
     xmin: number;
     ymin: number;
@@ -50,9 +50,9 @@ interface GrapherState {
 type Latex = string;
 type ID = string;
 
-type ListState = ItemState[];
+export type ListState = ItemState[];
 
-type ItemState =
+export type ItemState =
   | ExpressionState
   | ImageState
   | TableState
@@ -60,20 +60,20 @@ type ItemState =
   | TextState
   | SimulationState;
 
-interface BaseItemModel {
+export interface BaseItemModel {
   id: ID;
   secret?: boolean;
 }
 
-interface NonfolderModel extends BaseItemModel {
+export interface NonfolderModel extends BaseItemModel {
   folderId?: ID;
 }
 
-type LineStyle = "SOLID" | "DASHED" | "DOTTED";
-type PointStyle = "POINT" | "OPEN" | "CROSS";
-type DragMode = "NONE" | "X" | "Y" | "XY";
-type LabelSize = "SMALL" | "MEDIUM" | "LARGE" | Latex;
-type LabelOrientation =
+export type LineStyle = "SOLID" | "DASHED" | "DOTTED";
+export type PointStyle = "POINT" | "OPEN" | "CROSS";
+export type DragMode = "NONE" | "X" | "Y" | "XY";
+export type LabelSize = "SMALL" | "MEDIUM" | "LARGE" | Latex;
+export type LabelOrientation =
   | "default"
   | "center"
   | "center_auto"
@@ -91,19 +91,18 @@ type LabelOrientation =
   | "right"
   | "auto_right";
 
-type ClickableInfoRules = {
-  // appears that `id: number` is removed
+export type ClickableInfoRules = {
   id: string;
   expression: Latex;
   assignment: Latex;
 }[];
 
-interface Domain {
+export interface Domain {
   min: Latex;
   max: Latex;
 }
 
-interface MaybeClickable {
+export interface MaybeClickable {
   clickableInfo?: {
     enabled?: boolean;
     // description is the screen reader label
@@ -111,7 +110,7 @@ interface MaybeClickable {
     rules?: ClickableInfoRules;
   };
 }
-interface ExpressionState extends NonfolderModel, MaybeClickable {
+export interface ExpressionState extends NonfolderModel, MaybeClickable {
   type: "expression";
   color: string;
   latex?: Latex;
@@ -194,7 +193,7 @@ interface ExpressionState extends NonfolderModel, MaybeClickable {
   };
 }
 
-interface ImageState extends NonfolderModel, MaybeClickable {
+export interface ImageState extends NonfolderModel, MaybeClickable {
   type: "image";
   image_url: string;
   name?: string;
@@ -208,7 +207,7 @@ interface ImageState extends NonfolderModel, MaybeClickable {
   draggable?: boolean;
 }
 
-interface TableColumn {
+export interface TableColumn {
   id: ID;
   values: Latex[];
   color: string;
@@ -226,24 +225,24 @@ interface TableColumn {
   pointOpacity?: Latex;
 }
 
-interface TableState extends NonfolderModel {
+export interface TableState extends NonfolderModel {
   type: "table";
   columns: TableColumn[];
 }
 
-interface FolderState extends BaseItemModel {
+export interface FolderState extends BaseItemModel {
   type: "folder";
   hidden?: boolean;
   collapsed?: boolean;
   title?: string;
 }
 
-interface TextState extends NonfolderModel {
+export interface TextState extends NonfolderModel {
   type: "text";
   text?: string;
 }
 
-interface SimulationState extends NonfolderModel {
+export interface SimulationState extends NonfolderModel {
   type: "simulation";
   isPlaying?: boolean;
   fps?: Latex;
