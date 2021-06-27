@@ -134,7 +134,7 @@ export interface ExpressionState extends NonfolderModel, MaybeClickable {
   editableLabelMode?: "MATH" | "TEXT";
   residualVariable?: Latex;
   regressionParameters?: {
-    // key is a LaTeX identifier
+    // key should be Latex, but type aliases are not allowed as keys
     [key: string]: number;
   };
   isLogModeRegression?: boolean;
