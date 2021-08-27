@@ -1,6 +1,6 @@
 {
   "name": "calc-state-ts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Typescript definitions for all possible Desmos graph states.",
   "main": "index.js",
   "scripts": {

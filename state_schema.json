@@ -8,802 +8,23 @@
         "version": {
           "type": "number",
           "enum": [
-            8
+            9
           ]
         },
         "randomSeed": {
           "type": "string"
         },
         "graph": {
-          "type": "object",
-          "properties": {
-            "viewport": {
-              "type": "object",
-              "properties": {
-                "xmin": {
-                  "type": "number"
-                },
-                "ymin": {
-                  "type": "number"
-                },
-                "xmax": {
-                  "type": "number"
-                },
-                "ymax": {
-                  "type": "number"
-                }
-              },
-              "required": [
-                "xmin",
-                "ymin",
-                "xmax",
-                "ymax"
-              ],
-              "additionalProperties": false
-            },
-            "xAxisMinorSubdivisions": {
-              "type": "number"
-            },
-            "yAxisMinorSubdivisions": {
-              "type": "number"
-            },
-            "degreeMode": {
-              "type": "boolean"
-            },
-            "showGrid": {
-              "type": "boolean"
-            },
-            "showXAxis": {
-              "type": "boolean"
-            },
-            "showYAxis": {
-              "type": "boolean"
-            },
-            "xAxisNumbers": {
-              "type": "boolean"
-            },
-            "yAxisNumbers": {
-              "type": "boolean"
-            },
-            "polarNumbers": {
-              "type": "boolean"
-            },
-            "xAxisStep": {
-              "type": "number"
-            },
-            "yAxisStep": {
-              "type": "number"
-            },
-            "xAxisArrowMode": {
-              "type": "string",
-              "enum": [
-                "NONE",
-                "POSITIVE",
-                "BOTH"
-              ]
-            },
-            "yAxisArrowMode": {
-              "type": "string",
-              "enum": [
-                "NONE",
-                "POSITIVE",
-                "BOTH"
-              ]
-            },
-            "xAxisLabel": {
-              "type": "string"
-            },
-            "yAxisLabel": {
-              "type": "string"
-            },
-            "squareAxes": {
-              "type": "boolean"
-            },
-            "restrictGridToFirstQuadrant": {
-              "type": "boolean"
-            },
-            "polarMode": {
-              "type": "boolean"
-            }
-          },
-          "required": [
-            "viewport"
-          ],
-          "additionalProperties": false
+          "$ref": "#/definitions/GrapherState"
         },
         "expressions": {
           "type": "object",
           "properties": {
             "list": {
-              "type": "array",
-              "items": {
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "clickableInfo": {
-                        "type": "object",
-                        "properties": {
-                          "enabled": {
-                            "type": "boolean"
-                          },
-                          "description": {
-                            "type": "string"
-                          },
-                          "rules": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "string"
-                                },
-                                "expression": {
-                                  "type": "string"
-                                },
-                                "assignment": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "id",
-                                "expression",
-                                "assignment"
-                              ],
-                              "additionalProperties": false
-                            }
-                          }
-                        },
-                        "additionalProperties": false
-                      },
-                      "id": {
-                        "type": "string"
-                      },
-                      "secret": {
-                        "type": "boolean"
-                      },
-                      "folderId": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string",
-                        "enum": [
-                          "expression"
-                        ]
-                      },
-                      "color": {
-                        "type": "string"
-                      },
-                      "latex": {
-                        "type": "string"
-                      },
-                      "showLabel": {
-                        "type": "boolean"
-                      },
-                      "label": {
-                        "type": "string"
-                      },
-                      "hidden": {
-                        "type": "boolean"
-                      },
-                      "points": {
-                        "type": "boolean"
-                      },
-                      "lines": {
-                        "type": "boolean"
-                      },
-                      "lineStyle": {
-                        "type": "string",
-                        "enum": [
-                          "SOLID",
-                          "DASHED",
-                          "DOTTED"
-                        ]
-                      },
-                      "pointStyle": {
-                        "type": "string",
-                        "enum": [
-                          "POINT",
-                          "OPEN",
-                          "CROSS"
-                        ]
-                      },
-                      "fill": {
-                        "type": "boolean"
-                      },
-                      "dragMode": {
-                        "type": "string",
-                        "enum": [
-                          "NONE",
-                          "X",
-                          "Y",
-                          "XY"
-                        ]
-                      },
-                      "labelSize": {
-                        "type": "string"
-                      },
-                      "labelOrientation": {
-                        "type": "string",
-                        "enum": [
-                          "default",
-                          "center",
-                          "center_auto",
-                          "auto_center",
-                          "above",
-                          "above_left",
-                          "above_right",
-                          "above_auto",
-                          "below",
-                          "below_left",
-                          "below_right",
-                          "below_auto",
-                          "left",
-                          "auto_left",
-                          "right",
-                          "auto_right"
-                        ]
-                      },
-                      "extendedLabelOrientation": {
-                        "type": "string",
-                        "enum": [
-                          "default",
-                          "center",
-                          "center_auto",
-                          "auto_center",
-                          "above",
-                          "above_left",
-                          "above_right",
-                          "above_auto",
-                          "below",
-                          "below_left",
-                          "below_right",
-                          "below_auto",
-                          "left",
-                          "auto_left",
-                          "right",
-                          "auto_right"
-                        ]
-                      },
-                      "suppressTextOutline": {
-                        "type": "boolean"
-                      },
-                      "interactiveLabel": {
-                        "type": "boolean"
-                      },
-                      "editableLabelMode": {
-                        "type": "string",
-                        "enum": [
-                          "MATH",
-                          "TEXT"
-                        ]
-                      },
-                      "residualVariable": {
-                        "type": "string"
-                      },
-                      "regressionParameters": {
-                        "type": "object",
-                        "additionalProperties": {
-                          "type": "number"
-                        }
-                      },
-                      "isLogModeRegression": {
-                        "type": "boolean"
-                      },
-                      "displayEvaluationAsFraction": {
-                        "type": "boolean"
-                      },
-                      "slider": {
-                        "type": "object",
-                        "properties": {
-                          "hardMin": {
-                            "type": "boolean"
-                          },
-                          "hardMax": {
-                            "type": "boolean"
-                          },
-                          "animationPeriod": {
-                            "type": "number"
-                          },
-                          "loopMode": {
-                            "type": "string",
-                            "enum": [
-                              "LOOP_FORWARD_REVERSE",
-                              "LOOP_FORWARD",
-                              "PLAY_ONCE",
-                              "PLAY_INDEFINITELY"
-                            ]
-                          },
-                          "playDirection": {
-                            "type": "number",
-                            "enum": [
-                              1,
-                              -1
-                            ]
-                          },
-                          "isPlaying": {
-                            "type": "boolean"
-                          },
-                          "min": {
-                            "type": "string"
-                          },
-                          "max": {
-                            "type": "string"
-                          },
-                          "step": {
-                            "type": "string"
-                          }
-                        },
-                        "additionalProperties": false
-                      },
-                      "polarDomain": {
-                        "type": "object",
-                        "properties": {
-                          "min": {
-                            "type": "string"
-                          },
-                          "max": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "min",
-                          "max"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "parametricDomain": {
-                        "type": "object",
-                        "properties": {
-                          "min": {
-                            "type": "string"
-                          },
-                          "max": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "min",
-                          "max"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "domain": {
-                        "type": "object",
-                        "properties": {
-                          "min": {
-                            "type": "string"
-                          },
-                          "max": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "min",
-                          "max"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "cdf": {
-                        "type": "object",
-                        "properties": {
-                          "show": {
-                            "type": "boolean"
-                          },
-                          "min": {
-                            "type": "string"
-                          },
-                          "max": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "show"
-                        ],
-                        "additionalProperties": false
-                      },
-                      "colorLatex": {
-                        "type": "string"
-                      },
-                      "fillOpacity": {
-                        "type": "string"
-                      },
-                      "lineOpacity": {
-                        "type": "string"
-                      },
-                      "pointOpacity": {
-                        "type": "string"
-                      },
-                      "pointSize": {
-                        "type": "string"
-                      },
-                      "lineWidth": {
-                        "type": "string"
-                      },
-                      "labelAngle": {
-                        "type": "string"
-                      },
-                      "vizProps": {
-                        "type": "object",
-                        "properties": {
-                          "breadth": {
-                            "type": "string"
-                          },
-                          "axisOffset": {
-                            "type": "string"
-                          },
-                          "alignedAxis": {
-                            "type": "string",
-                            "enum": [
-                              "x",
-                              "y"
-                            ]
-                          },
-                          "showBoxplotOutliers": {
-                            "type": "boolean"
-                          },
-                          "dotplotSize": {
-                            "type": "string",
-                            "enum": [
-                              "small",
-                              "large"
-                            ]
-                          },
-                          "dotplotXMode": {
-                            "type": "string",
-                            "enum": [
-                              "exact",
-                              "binned"
-                            ]
-                          },
-                          "binAlignment": {
-                            "type": "string",
-                            "enum": [
-                              "left",
-                              "center"
-                            ]
-                          },
-                          "histogramMode": {
-                            "type": "string",
-                            "enum": [
-                              "count",
-                              "relative",
-                              "density"
-                            ]
-                          }
-                        },
-                        "additionalProperties": false
-                      }
-                    },
-                    "required": [
-                      "color",
-                      "id",
-                      "type"
-                    ],
-                    "additionalProperties": false
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "clickableInfo": {
-                        "type": "object",
-                        "properties": {
-                          "enabled": {
-                            "type": "boolean"
-                          },
-                          "description": {
-                            "type": "string"
-                          },
-                          "rules": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "string"
-                                },
-                                "expression": {
-                                  "type": "string"
-                                },
-                                "assignment": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "id",
-                                "expression",
-                                "assignment"
-                              ],
-                              "additionalProperties": false
-                            }
-                          }
-                        },
-                        "additionalProperties": false
-                      },
-                      "id": {
-                        "type": "string"
-                      },
-                      "secret": {
-                        "type": "boolean"
-                      },
-                      "folderId": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string",
-                        "enum": [
-                          "image"
-                        ]
-                      },
-                      "image_url": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "width": {
-                        "type": "string"
-                      },
-                      "height": {
-                        "type": "string"
-                      },
-                      "hidden": {
-                        "type": "boolean"
-                      },
-                      "center": {
-                        "type": "string"
-                      },
-                      "angle": {
-                        "type": "string"
-                      },
-                      "opacity": {
-                        "type": "string"
-                      },
-                      "foreground": {
-                        "type": "boolean"
-                      },
-                      "draggable": {
-                        "type": "boolean"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "image_url",
-                      "type"
-                    ],
-                    "additionalProperties": false
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "secret": {
-                        "type": "boolean"
-                      },
-                      "folderId": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string",
-                        "enum": [
-                          "table"
-                        ]
-                      },
-                      "columns": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "type": "string"
-                            },
-                            "values": {
-                              "type": "array",
-                              "items": {
-                                "type": "string"
-                              }
-                            },
-                            "color": {
-                              "type": "string"
-                            },
-                            "latex": {
-                              "type": "string"
-                            },
-                            "hidden": {
-                              "type": "boolean"
-                            },
-                            "points": {
-                              "type": "boolean"
-                            },
-                            "lines": {
-                              "type": "boolean"
-                            },
-                            "dragMode": {
-                              "type": "string",
-                              "enum": [
-                                "NONE",
-                                "X",
-                                "Y",
-                                "XY"
-                              ]
-                            },
-                            "lineStyle": {
-                              "type": "string",
-                              "enum": [
-                                "SOLID",
-                                "DASHED",
-                                "DOTTED"
-                              ]
-                            },
-                            "pointStyle": {
-                              "type": "string",
-                              "enum": [
-                                "POINT",
-                                "OPEN",
-                                "CROSS"
-                              ]
-                            },
-                            "colorLatex": {
-                              "type": "string"
-                            },
-                            "lineOpacity": {
-                              "type": "string"
-                            },
-                            "lineWidth": {
-                              "type": "string"
-                            },
-                            "pointSize": {
-                              "type": "string"
-                            },
-                            "pointOpacity": {
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "id",
-                            "values",
-                            "color"
-                          ],
-                          "additionalProperties": false
-                        }
-                      }
-                    },
-                    "required": [
-                      "columns",
-                      "id",
-                      "type"
-                    ],
-                    "additionalProperties": false
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "secret": {
-                        "type": "boolean"
-                      },
-                      "type": {
-                        "type": "string",
-                        "enum": [
-                          "folder"
-                        ]
-                      },
-                      "hidden": {
-                        "type": "boolean"
-                      },
-                      "collapsed": {
-                        "type": "boolean"
-                      },
-                      "title": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "type"
-                    ],
-                    "additionalProperties": false
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "secret": {
-                        "type": "boolean"
-                      },
-                      "folderId": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string",
-                        "enum": [
-                          "text"
-                        ]
-                      },
-                      "text": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "type"
-                    ],
-                    "additionalProperties": false
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string"
-                      },
-                      "secret": {
-                        "type": "boolean"
-                      },
-                      "folderId": {
-                        "type": "string"
-                      },
-                      "type": {
-                        "type": "string",
-                        "enum": [
-                          "simulation"
-                        ]
-                      },
-                      "isPlaying": {
-                        "type": "boolean"
-                      },
-                      "fps": {
-                        "type": "string"
-                      },
-                      "clickableInfo": {
-                        "type": "object",
-                        "properties": {
-                          "rules": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "string"
-                                },
-                                "expression": {
-                                  "type": "string"
-                                },
-                                "assignment": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "id",
-                                "expression",
-                                "assignment"
-                              ],
-                              "additionalProperties": false
-                            }
-                          },
-                          "enabled": {
-                            "type": "boolean"
-                          }
-                        },
-                        "required": [
-                          "rules"
-                        ],
-                        "additionalProperties": false
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "type"
-                    ],
-                    "additionalProperties": false
-                  }
-                ]
-              }
+              "$ref": "#/definitions/ListState"
+            },
+            "ticker": {
+              "$ref": "#/definitions/Ticker"
             }
           },
           "required": [
@@ -818,7 +39,683 @@
         "expressions"
       ],
       "additionalProperties": false,
-      "description": "Useful sources:\n  - core/types/*\n  - graphing-calc/models/*\n  - core/graphing-calc/json/*"
+      "description": "Useful sources:\n  - core/types/*\n  - graphing-calc/models/*\n  - core/graphing-calc/json/*\n  - core/graphing-calc/migrations/*"
+    },
+    "GrapherState": {
+      "type": "object",
+      "properties": {
+        "viewport": {
+          "type": "object",
+          "properties": {
+            "xmin": {
+              "type": "number"
+            },
+            "ymin": {
+              "type": "number"
+            },
+            "xmax": {
+              "type": "number"
+            },
+            "ymax": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "xmin",
+            "ymin",
+            "xmax",
+            "ymax"
+          ],
+          "additionalProperties": false
+        },
+        "xAxisMinorSubdivisions": {
+          "type": "number"
+        },
+        "yAxisMinorSubdivisions": {
+          "type": "number"
+        },
+        "degreeMode": {
+          "type": "boolean"
+        },
+        "showGrid": {
+          "type": "boolean"
+        },
+        "showXAxis": {
+          "type": "boolean"
+        },
+        "showYAxis": {
+          "type": "boolean"
+        },
+        "xAxisNumbers": {
+          "type": "boolean"
+        },
+        "yAxisNumbers": {
+          "type": "boolean"
+        },
+        "polarNumbers": {
+          "type": "boolean"
+        },
+        "xAxisStep": {
+          "type": "number"
+        },
+        "yAxisStep": {
+          "type": "number"
+        },
+        "xAxisArrowMode": {
+          "$ref": "#/definitions/ArrowMode"
+        },
+        "yAxisArrowMode": {
+          "$ref": "#/definitions/ArrowMode"
+        },
+        "xAxisLabel": {
+          "type": "string"
+        },
+        "yAxisLabel": {
+          "type": "string"
+        },
+        "squareAxes": {
+          "type": "boolean"
+        },
+        "restrictGridToFirstQuadrant": {
+          "type": "boolean"
+        },
+        "polarMode": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "viewport"
+      ],
+      "additionalProperties": false
+    },
+    "ArrowMode": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "POSITIVE",
+        "BOTH"
+      ]
+    },
+    "ListState": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ItemState"
+      }
+    },
+    "ItemState": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/ExpressionState"
+        },
+        {
+          "$ref": "#/definitions/ImageState"
+        },
+        {
+          "$ref": "#/definitions/TableState"
+        },
+        {
+          "$ref": "#/definitions/FolderState"
+        },
+        {
+          "$ref": "#/definitions/TextState"
+        }
+      ]
+    },
+    "ExpressionState": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "boolean"
+        },
+        "folderId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "expression"
+          ]
+        },
+        "color": {
+          "type": "string"
+        },
+        "latex": {
+          "type": "string"
+        },
+        "showLabel": {
+          "type": "boolean"
+        },
+        "label": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "points": {
+          "type": "boolean"
+        },
+        "lines": {
+          "type": "boolean"
+        },
+        "lineStyle": {
+          "$ref": "#/definitions/LineStyle"
+        },
+        "pointStyle": {
+          "$ref": "#/definitions/PointStyle"
+        },
+        "fill": {
+          "type": "boolean"
+        },
+        "dragMode": {
+          "$ref": "#/definitions/DragMode"
+        },
+        "labelSize": {
+          "$ref": "#/definitions/LabelSize"
+        },
+        "labelOrientation": {
+          "$ref": "#/definitions/LabelOrientation"
+        },
+        "suppressTextOutline": {
+          "type": "boolean"
+        },
+        "interactiveLabel": {
+          "type": "boolean"
+        },
+        "editableLabelMode": {
+          "type": "string",
+          "enum": [
+            "MATH",
+            "TEXT"
+          ]
+        },
+        "residualVariable": {
+          "type": "string"
+        },
+        "regressionParameters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "isLogModeRegression": {
+          "type": "boolean"
+        },
+        "displayEvaluationAsFraction": {
+          "type": "boolean"
+        },
+        "slider": {
+          "type": "object",
+          "properties": {
+            "hardMin": {
+              "type": "boolean"
+            },
+            "hardMax": {
+              "type": "boolean"
+            },
+            "animationPeriod": {
+              "type": "number"
+            },
+            "loopMode": {
+              "type": "string",
+              "enum": [
+                "LOOP_FORWARD_REVERSE",
+                "LOOP_FORWARD",
+                "PLAY_ONCE",
+                "PLAY_INDEFINITELY"
+              ]
+            },
+            "playDirection": {
+              "type": "number",
+              "enum": [
+                1,
+                -1
+              ]
+            },
+            "isPlaying": {
+              "type": "boolean"
+            },
+            "min": {
+              "type": "string"
+            },
+            "max": {
+              "type": "string"
+            },
+            "step": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "polarDomain": {
+          "$ref": "#/definitions/Domain"
+        },
+        "parametricDomain": {
+          "$ref": "#/definitions/Domain"
+        },
+        "domain": {
+          "$ref": "#/definitions/Domain"
+        },
+        "cdf": {
+          "type": "object",
+          "properties": {
+            "show": {
+              "type": "boolean"
+            },
+            "min": {
+              "type": "string"
+            },
+            "max": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "show"
+          ],
+          "additionalProperties": false
+        },
+        "colorLatex": {
+          "type": "string"
+        },
+        "fillOpacity": {
+          "type": "string"
+        },
+        "lineOpacity": {
+          "type": "string"
+        },
+        "pointOpacity": {
+          "type": "string"
+        },
+        "pointSize": {
+          "type": "string"
+        },
+        "lineWidth": {
+          "type": "string"
+        },
+        "labelAngle": {
+          "type": "string"
+        },
+        "vizProps": {
+          "type": "object",
+          "properties": {
+            "breadth": {
+              "type": "string"
+            },
+            "axisOffset": {
+              "type": "string"
+            },
+            "alignedAxis": {
+              "type": "string",
+              "enum": [
+                "x",
+                "y"
+              ]
+            },
+            "showBoxplotOutliers": {
+              "type": "boolean"
+            },
+            "dotplotXMode": {
+              "type": "string",
+              "enum": [
+                "exact",
+                "binned"
+              ]
+            },
+            "binAlignment": {
+              "type": "string",
+              "enum": [
+                "left",
+                "center"
+              ]
+            },
+            "histogramMode": {
+              "type": "string",
+              "enum": [
+                "count",
+                "relative",
+                "density"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "clickableInfo": {
+          "$ref": "#/definitions/BaseClickable"
+        }
+      },
+      "required": [
+        "color",
+        "id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "LineStyle": {
+      "type": "string",
+      "enum": [
+        "SOLID",
+        "DASHED",
+        "DOTTED"
+      ]
+    },
+    "PointStyle": {
+      "type": "string",
+      "enum": [
+        "POINT",
+        "OPEN",
+        "CROSS"
+      ]
+    },
+    "DragMode": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "X",
+        "Y",
+        "XY"
+      ]
+    },
+    "LabelSize": {
+      "type": "string"
+    },
+    "LabelOrientation": {
+      "type": "string",
+      "enum": [
+        "default",
+        "center",
+        "center_auto",
+        "auto_center",
+        "above",
+        "above_left",
+        "above_right",
+        "above_auto",
+        "below",
+        "below_left",
+        "below_right",
+        "below_auto",
+        "left",
+        "auto_left",
+        "right",
+        "auto_right"
+      ]
+    },
+    "Domain": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "string"
+        },
+        "max": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "min",
+        "max"
+      ],
+      "additionalProperties": false
+    },
+    "BaseClickable": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "latex": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ImageState": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "boolean"
+        },
+        "folderId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "image"
+          ]
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "width": {
+          "type": "string"
+        },
+        "height": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "center": {
+          "type": "string"
+        },
+        "angle": {
+          "type": "string"
+        },
+        "opacity": {
+          "type": "string"
+        },
+        "foreground": {
+          "type": "boolean"
+        },
+        "draggable": {
+          "type": "boolean"
+        },
+        "clickableInfo": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "hoveredImage": {
+              "type": "string"
+            },
+            "depressedImage": {
+              "type": "string"
+            },
+            "enabled": {
+              "type": "boolean"
+            },
+            "description": {
+              "type": "string"
+            },
+            "latex": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "image_url",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "TableState": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "boolean"
+        },
+        "folderId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "table"
+          ]
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TableColumn"
+          }
+        }
+      },
+      "required": [
+        "columns",
+        "id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "TableColumn": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "color": {
+          "type": "string"
+        },
+        "latex": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "points": {
+          "type": "boolean"
+        },
+        "lines": {
+          "type": "boolean"
+        },
+        "dragMode": {
+          "$ref": "#/definitions/DragMode"
+        },
+        "lineStyle": {
+          "$ref": "#/definitions/LineStyle"
+        },
+        "pointStyle": {
+          "$ref": "#/definitions/PointStyle"
+        },
+        "colorLatex": {
+          "type": "string"
+        },
+        "lineOpacity": {
+          "type": "string"
+        },
+        "lineWidth": {
+          "type": "string"
+        },
+        "pointSize": {
+          "type": "string"
+        },
+        "pointOpacity": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "values",
+        "color"
+      ],
+      "additionalProperties": false
+    },
+    "FolderState": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "boolean"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "folder"
+          ]
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "collapsed": {
+          "type": "boolean"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "TextState": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "boolean"
+        },
+        "folderId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "text"
+          ]
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "Ticker": {
+      "type": "object",
+      "properties": {
+        "handlerLatex": {
+          "type": "string"
+        },
+        "minStepLatex": {
+          "type": "string"
+        },
+        "open": {
+          "type": "boolean"
+        },
+        "playing": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
     }
   }
 }

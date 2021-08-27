@@ -3,14 +3,23 @@
  *  - core/types/*
  *  - graphing-calc/models/*
  *  - core/graphing-calc/json/*
+ *  - core/graphing-calc/migrations/*
  */
 export interface State {
-  version: 8;
+  version: 9;
   randomSeed?: string;
   graph: GrapherState;
   expressions: {
     list: ListState;
+    ticker?: Ticker;
   };
+}
+
+export interface Ticker {
+  handlerLatex?: Latex;
+  minStepLatex?: Latex;
+  open?: boolean;
+  playing?: boolean;
 }
 
 export type ArrowMode = "NONE" | "POSITIVE" | "BOTH";
@@ -57,8 +66,7 @@ export type ItemState =
   | ImageState
   | TableState
   | FolderState
-  | TextState
-  | SimulationState;
+  | TextState;
 
 export interface BaseItemModel {
   id: ID;
@@ -91,26 +99,18 @@ export type LabelOrientation =
   | "right"
   | "auto_right";
 
-export type ClickableInfoRules = {
-  id: string;
-  expression: Latex;
-  assignment: Latex;
-}[];
-
 export interface Domain {
   min: Latex;
   max: Latex;
 }
 
-export interface MaybeClickable {
-  clickableInfo?: {
-    enabled?: boolean;
-    // description is the screen reader label
-    description?: string;
-    rules?: ClickableInfoRules;
-  };
+export interface BaseClickable {
+  enabled?: boolean;
+  // description is the screen reader label
+  description?: string;
+  latex?: Latex;
 }
-export interface ExpressionState extends NonfolderModel, MaybeClickable {
+export interface ExpressionState extends NonfolderModel {
   type: "expression";
   color: string;
   latex?: Latex;
@@ -124,10 +124,7 @@ export interface ExpressionState extends NonfolderModel, MaybeClickable {
   fill?: boolean;
   dragMode?: DragMode;
   labelSize?: LabelSize;
-  // Type of labelOrientation is too broad
   labelOrientation?: LabelOrientation;
-  // extendedLabelOrientation seems like it is renamed to labelOrientation in state version 9
-  extendedLabelOrientation?: LabelOrientation;
   suppressTextOutline?: boolean;
   // interactiveLabel is show-on-hover
   interactiveLabel?: boolean;
@@ -178,9 +175,6 @@ export interface ExpressionState extends NonfolderModel, MaybeClickable {
     alignedAxis?: "x" | "y";
     showBoxplotOutliers?: boolean;
     // -- Applies to dotplot only:
-    // dotplotSize is removed in state version 9
-    // "small" corresponds to pointSize=9; "large" corresponds to pointSize=20
-    dotplotSize?: "small" | "large";
     // the string "binned" is never actually checked,
     // just inferred by the absence of "exact"
     dotplotXMode?: "exact" | "binned";
@@ -191,9 +185,10 @@ export interface ExpressionState extends NonfolderModel, MaybeClickable {
     // just inferred by the absence of "relative" and "density"
     histogramMode?: "count" | "relative" | "density";
   };
+  clickableInfo?: BaseClickable;
 }
 
-export interface ImageState extends NonfolderModel, MaybeClickable {
+export interface ImageState extends NonfolderModel {
   type: "image";
   image_url: string;
   name?: string;
@@ -205,6 +200,10 @@ export interface ImageState extends NonfolderModel, MaybeClickable {
   opacity?: Latex;
   foreground?: boolean;
   draggable?: boolean;
+  clickableInfo?: BaseClickable & {
+    hoveredImage?: string;
+    depressedImage?: string;
+  };
 }
 
 export interface TableColumn {
@@ -240,15 +239,4 @@ export interface FolderState extends BaseItemModel {
 export interface TextState extends NonfolderModel {
   type: "text";
   text?: string;
-}
-
-export interface SimulationState extends NonfolderModel {
-  type: "simulation";
-  isPlaying?: boolean;
-  fps?: Latex;
-  clickableInfo?: {
-    rules: ClickableInfoRules;
-    // enabled appears removed. Only saw it in one of my graphs, so it might be manually placed there
-    enabled?: boolean;
-  };
 }
