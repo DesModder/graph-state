@@ -1,4 +1,4 @@
-# Calc State TS
+# Graph State
 
 Typescript definitions for all possible Desmos graph states.
 
