@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$ref": "#/definitions/State",
+  "$ref": "#/definitions/GraphState",
   "definitions": {
-    "State": {
+    "GraphState": {
       "type": "object",
       "properties": {
         "version": {
@@ -21,7 +21,10 @@
           "type": "object",
           "properties": {
             "list": {
-              "$ref": "#/definitions/ListState"
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ItemState"
+              }
             },
             "ticker": {
               "$ref": "#/definitions/Ticker"
@@ -39,7 +42,7 @@
         "expressions"
       ],
       "additionalProperties": false,
-      "description": "Useful sources:\n  - core/types/*\n  - graphing-calc/models/*\n  - core/graphing-calc/json/*\n  - core/graphing-calc/migrations/*"
+      "description": "Useful sources:\n  - core/types/*\n  - graphing-calc/models/*\n  - core/graphing-calc/json/*\n  - core/graphing-calc/migrations/*\n  - https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/desmos/index.d.ts"
     },
     "GrapherState": {
       "type": "object",
@@ -135,12 +138,6 @@
         "POSITIVE",
         "BOTH"
       ]
-    },
-    "ListState": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/ItemState"
-      }
     },
     "ItemState": {
       "anyOf": [
@@ -414,7 +411,8 @@
         "NONE",
         "X",
         "Y",
-        "XY"
+        "XY",
+        "AUTO"
       ]
     },
     "LabelSize": {

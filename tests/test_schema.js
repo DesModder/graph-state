@@ -8,6 +8,8 @@ const ajv = new Ajv({
 const schema = JSON.parse(fs.readFileSync("../state_schema.json"));
 const validate = ajv.compile(schema);
 
+const VERSION = 9;
+
 let successes = 0;
 let crashes = 0;
 let wrongVersion = 0;
@@ -17,7 +19,7 @@ fs.readdirSync("./calc_states").forEach((filename) => {
   try {
     const textContents = fs.readFileSync(fullFilename);
     const data = JSON.parse(textContents);
-    if (data.version !== 8) {
+    if (data.version !== VERSION) {
       wrongVersion += 1;
       return;
     }
@@ -30,12 +32,13 @@ fs.readdirSync("./calc_states").forEach((filename) => {
       console.log(graphID, "FAIL", validate.errors);
     }
   } catch {
-    // crashes mostly come from empty or completely malformed graph data.
+    // Crashes mostly come from empty or completely malformed graph data.
+    // These are not an issue with the type definitions
     crashes += 1;
   }
 });
 console.log(
-  `\nTesting finished: ${successes}/${total} version-8 graphs passed. Skipped ${
+  `\nTesting finished: ${successes}/${total} version-${VERSION} graphs passed. Skipped ${
     wrongVersion + crashes
   } graphs (${wrongVersion} incorrect versions and ${crashes} test runner exceptions).`
 );

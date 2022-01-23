@@ -4,13 +4,14 @@
  *  - graphing-calc/models/*
  *  - core/graphing-calc/json/*
  *  - core/graphing-calc/migrations/*
+ *  - https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/desmos/index.d.ts
  */
-export interface State {
+export interface GraphState {
   version: 9;
   randomSeed?: string;
   graph: GrapherState;
   expressions: {
-    list: ListState;
+    list: ItemState[];
     ticker?: Ticker;
   };
 }
@@ -59,8 +60,6 @@ export interface GrapherState {
 type Latex = string;
 type ID = string;
 
-export type ListState = ItemState[];
-
 export type ItemState =
   | ExpressionState
   | ImageState
@@ -68,18 +67,18 @@ export type ItemState =
   | FolderState
   | TextState;
 
-export interface BaseItemModel {
+export interface BaseItemState {
   id: ID;
   secret?: boolean;
 }
 
-export interface NonfolderModel extends BaseItemModel {
+export interface NonFolderState extends BaseItemState {
   folderId?: ID;
 }
 
 export type LineStyle = "SOLID" | "DASHED" | "DOTTED";
 export type PointStyle = "POINT" | "OPEN" | "CROSS";
-export type DragMode = "NONE" | "X" | "Y" | "XY";
+export type DragMode = "NONE" | "X" | "Y" | "XY" | "AUTO";
 export type LabelSize = "SMALL" | "MEDIUM" | "LARGE" | Latex;
 export type LabelOrientation =
   | "default"
@@ -110,7 +109,7 @@ export interface BaseClickable {
   description?: string;
   latex?: Latex;
 }
-export interface ExpressionState extends NonfolderModel {
+export interface ExpressionState extends NonFolderState {
   type: "expression";
   color: string;
   latex?: Latex;
@@ -188,7 +187,7 @@ export interface ExpressionState extends NonfolderModel {
   clickableInfo?: BaseClickable;
 }
 
-export interface ImageState extends NonfolderModel {
+export interface ImageState extends NonFolderState {
   type: "image";
   image_url: string;
   name?: string;
@@ -224,19 +223,19 @@ export interface TableColumn {
   pointOpacity?: Latex;
 }
 
-export interface TableState extends NonfolderModel {
+export interface TableState extends NonFolderState {
   type: "table";
   columns: TableColumn[];
 }
 
-export interface FolderState extends BaseItemModel {
+export interface FolderState extends BaseItemState {
   type: "folder";
   hidden?: boolean;
   collapsed?: boolean;
   title?: string;
 }
 
-export interface TextState extends NonfolderModel {
+export interface TextState extends NonFolderState {
   type: "text";
   text?: string;
 }
