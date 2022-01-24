@@ -4,6 +4,7 @@
  *  - graphing-calc/models/*
  *  - core/graphing-calc/json/*
  *  - core/graphing-calc/migrations/*
+ *  - main/graph_settings
  *  - https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/desmos/index.d.ts
  */
 export interface GraphState {
