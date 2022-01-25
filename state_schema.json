@@ -42,7 +42,7 @@
         "expressions"
       ],
       "additionalProperties": false,
-      "description": "Useful sources:\n  - core/types/*\n  - graphing-calc/models/*\n  - core/graphing-calc/json/*\n  - core/graphing-calc/migrations/*\n  - https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/desmos/index.d.ts"
+      "description": "Useful sources:\n  - core/types/*\n  - graphing-calc/models/*\n  - core/graphing-calc/json/*\n  - core/graphing-calc/migrations/*\n  - main/graph_settings\n  - https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/desmos/index.d.ts"
     },
     "GrapherState": {
       "type": "object",
@@ -160,7 +160,47 @@
     },
     "ExpressionState": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
+        "color": {
+          "type": "string"
+        },
+        "latex": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean"
+        },
+        "points": {
+          "type": "boolean"
+        },
+        "lines": {
+          "type": "boolean"
+        },
+        "dragMode": {
+          "$ref": "#/definitions/DragMode"
+        },
+        "lineStyle": {
+          "$ref": "#/definitions/LineStyle"
+        },
+        "pointStyle": {
+          "$ref": "#/definitions/PointStyle"
+        },
+        "colorLatex": {
+          "type": "string"
+        },
+        "lineOpacity": {
+          "type": "string"
+        },
+        "lineWidth": {
+          "type": "string"
+        },
+        "pointSize": {
+          "type": "string"
+        },
+        "pointOpacity": {
+          "type": "string"
+        },
         "id": {
           "type": "string"
         },
@@ -176,44 +216,26 @@
             "expression"
           ]
         },
-        "color": {
-          "type": "string"
-        },
-        "latex": {
-          "type": "string"
-        },
         "showLabel": {
           "type": "boolean"
-        },
-        "label": {
-          "type": "string"
-        },
-        "hidden": {
-          "type": "boolean"
-        },
-        "points": {
-          "type": "boolean"
-        },
-        "lines": {
-          "type": "boolean"
-        },
-        "lineStyle": {
-          "$ref": "#/definitions/LineStyle"
-        },
-        "pointStyle": {
-          "$ref": "#/definitions/PointStyle"
         },
         "fill": {
           "type": "boolean"
         },
-        "dragMode": {
-          "$ref": "#/definitions/DragMode"
+        "fillOpacity": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
         },
         "labelSize": {
           "$ref": "#/definitions/LabelSize"
         },
         "labelOrientation": {
           "$ref": "#/definitions/LabelOrientation"
+        },
+        "labelAngle": {
+          "type": "string"
         },
         "suppressTextOutline": {
           "type": "boolean"
@@ -313,27 +335,6 @@
           ],
           "additionalProperties": false
         },
-        "colorLatex": {
-          "type": "string"
-        },
-        "fillOpacity": {
-          "type": "string"
-        },
-        "lineOpacity": {
-          "type": "string"
-        },
-        "pointOpacity": {
-          "type": "string"
-        },
-        "pointSize": {
-          "type": "string"
-        },
-        "lineWidth": {
-          "type": "string"
-        },
-        "labelAngle": {
-          "type": "string"
-        },
         "vizProps": {
           "type": "object",
           "properties": {
@@ -386,8 +387,17 @@
         "color",
         "id",
         "type"
-      ],
-      "additionalProperties": false
+      ]
+    },
+    "DragMode": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "X",
+        "Y",
+        "XY",
+        "AUTO"
+      ]
     },
     "LineStyle": {
       "type": "string",
@@ -403,16 +413,6 @@
         "POINT",
         "OPEN",
         "CROSS"
-      ]
-    },
-    "DragMode": {
-      "type": "string",
-      "enum": [
-        "NONE",
-        "X",
-        "Y",
-        "XY",
-        "AUTO"
       ]
     },
     "LabelSize": {
@@ -581,16 +581,8 @@
     },
     "TableColumn": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "id": {
-          "type": "string"
-        },
-        "values": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
         "color": {
           "type": "string"
         },
@@ -629,14 +621,22 @@
         },
         "pointOpacity": {
           "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "required": [
+        "color",
         "id",
-        "values",
-        "color"
-      ],
-      "additionalProperties": false
+        "values"
+      ]
     },
     "FolderState": {
       "type": "object",

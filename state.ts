@@ -110,21 +110,15 @@ export interface BaseClickable {
   description?: string;
   latex?: Latex;
 }
-export interface ExpressionState extends NonFolderState {
+interface ExpressionStateWithoutColumn extends NonFolderState {
   type: "expression";
-  color: string;
-  latex?: Latex;
   showLabel?: boolean;
-  label?: string;
-  hidden?: boolean;
-  points?: boolean;
-  lines?: boolean;
-  lineStyle?: LineStyle;
-  pointStyle?: PointStyle;
   fill?: boolean;
-  dragMode?: DragMode;
+  fillOpacity?: Latex;
+  label?: string;
   labelSize?: LabelSize;
   labelOrientation?: LabelOrientation;
+  labelAngle?: Latex;
   suppressTextOutline?: boolean;
   // interactiveLabel is show-on-hover
   interactiveLabel?: boolean;
@@ -160,13 +154,6 @@ export interface ExpressionState extends NonFolderState {
     min?: Latex;
     max?: Latex;
   };
-  colorLatex?: Latex;
-  fillOpacity?: Latex;
-  lineOpacity?: Latex;
-  pointOpacity?: Latex;
-  pointSize?: Latex;
-  lineWidth?: Latex;
-  labelAngle?: Latex;
   vizProps?: {
     // -- Applies to boxplot only:
     // axisOffset=offset and breadth=height (boxplots only)
@@ -188,6 +175,9 @@ export interface ExpressionState extends NonFolderState {
   clickableInfo?: BaseClickable;
 }
 
+export type ExpressionState = ExpressionStateWithoutColumn &
+  ColumnExpressionShared;
+
 export interface ImageState extends NonFolderState {
   type: "image";
   image_url: string;
@@ -206,9 +196,12 @@ export interface ImageState extends NonFolderState {
   };
 }
 
-export interface TableColumn {
+export type TableColumn = {
   id: ID;
   values: Latex[];
+} & ColumnExpressionShared;
+
+export interface ColumnExpressionShared {
   color: string;
   latex?: Latex;
   hidden?: boolean;
