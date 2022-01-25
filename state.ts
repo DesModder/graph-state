@@ -1,5 +1,5 @@
 /**
- * Useful sources:
+ * Reference sources:
  *  - core/types/*
  *  - graphing-calc/models/*
  *  - core/graphing-calc/json/*
@@ -61,19 +61,20 @@ export interface GrapherState {
 type Latex = string;
 type ID = string;
 
-export type ItemState =
+export type ItemState = NonFolderState | FolderState;
+
+export type NonFolderState =
   | ExpressionState
   | ImageState
   | TableState
-  | FolderState
   | TextState;
 
-export interface BaseItemState {
+interface BaseItemState {
   id: ID;
   secret?: boolean;
 }
 
-export interface NonFolderState extends BaseItemState {
+interface BaseNonFolderState extends BaseItemState {
   folderId?: ID;
 }
 
@@ -110,7 +111,7 @@ export interface BaseClickable {
   description?: string;
   latex?: Latex;
 }
-interface ExpressionStateWithoutColumn extends NonFolderState {
+interface ExpressionStateWithoutColumn extends BaseNonFolderState {
   type: "expression";
   showLabel?: boolean;
   fill?: boolean;
@@ -178,7 +179,7 @@ interface ExpressionStateWithoutColumn extends NonFolderState {
 export type ExpressionState = ExpressionStateWithoutColumn &
   ColumnExpressionShared;
 
-export interface ImageState extends NonFolderState {
+export interface ImageState extends BaseNonFolderState {
   type: "image";
   image_url: string;
   name?: string;
@@ -217,7 +218,7 @@ export interface ColumnExpressionShared {
   pointOpacity?: Latex;
 }
 
-export interface TableState extends NonFolderState {
+export interface TableState extends BaseNonFolderState {
   type: "table";
   columns: TableColumn[];
 }
@@ -229,7 +230,7 @@ export interface FolderState extends BaseItemState {
   title?: string;
 }
 
-export interface TextState extends NonFolderState {
+export interface TextState extends BaseNonFolderState {
   type: "text";
   text?: string;
 }
