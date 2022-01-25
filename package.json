@@ -1,6 +1,6 @@
 {
   "name": "@desmodder/graph-state",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Typescript definitions for all possible Desmos graph states.",
   "main": "state.ts",
   "scripts": {

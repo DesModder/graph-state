@@ -42,7 +42,7 @@
         "expressions"
       ],
       "additionalProperties": false,
-      "description": "Useful sources:\n  - core/types/*\n  - graphing-calc/models/*\n  - core/graphing-calc/json/*\n  - core/graphing-calc/migrations/*\n  - main/graph_settings\n  - https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/desmos/index.d.ts"
+      "description": "Reference sources:\n  - core/types/*\n  - graphing-calc/models/*\n  - core/graphing-calc/json/*\n  - core/graphing-calc/migrations/*\n  - main/graph_settings\n  - https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/desmos/index.d.ts"
     },
     "GrapherState": {
       "type": "object",
@@ -142,6 +142,16 @@
     "ItemState": {
       "anyOf": [
         {
+          "$ref": "#/definitions/NonFolderState"
+        },
+        {
+          "$ref": "#/definitions/FolderState"
+        }
+      ]
+    },
+    "NonFolderState": {
+      "anyOf": [
+        {
           "$ref": "#/definitions/ExpressionState"
         },
         {
@@ -149,9 +159,6 @@
         },
         {
           "$ref": "#/definitions/TableState"
-        },
-        {
-          "$ref": "#/definitions/FolderState"
         },
         {
           "$ref": "#/definitions/TextState"
@@ -638,6 +645,34 @@
         "values"
       ]
     },
+    "TextState": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "boolean"
+        },
+        "folderId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "text"
+          ]
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
     "FolderState": {
       "type": "object",
       "properties": {
@@ -660,34 +695,6 @@
           "type": "boolean"
         },
         "title": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "id",
-        "type"
-      ],
-      "additionalProperties": false
-    },
-    "TextState": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "secret": {
-          "type": "boolean"
-        },
-        "folderId": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string",
-          "enum": [
-            "text"
-          ]
-        },
-        "text": {
           "type": "string"
         }
       },
