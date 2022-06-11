@@ -5,6 +5,9 @@ const ajv = new Ajv({
   allowUnionTypes: true, // to allow `string | number`
 });
 
+// CONFIGURE: print graphs with a valid ID, without logging full validation
+const printGraphs = false;
+
 const schema = JSON.parse(fs.readFileSync("../state_schema.json"));
 const validate = ajv.compile(schema);
 
@@ -24,12 +27,13 @@ fs.readdirSync("./calc_states").forEach((filename) => {
       return;
     }
     const valid = validate(data);
-    const graphID = filename.split(".")[0];
+    const graphID = filename.replace(/\?.*/, "").split(".")[0];
+    if (printGraphs) console.log(graphID);
     total += 1;
     if (valid) {
       successes += 1;
     } else {
-      console.log(graphID, "FAIL", validate.errors);
+      if (!printGraphs) console.log(graphID, "FAIL", validate.errors);
     }
   } catch {
     // Crashes mostly come from empty or completely malformed graph data.
@@ -37,8 +41,9 @@ fs.readdirSync("./calc_states").forEach((filename) => {
     crashes += 1;
   }
 });
-console.log(
-  `\nTesting finished: ${successes}/${total} version-${VERSION} graphs passed. Skipped ${
-    wrongVersion + crashes
-  } graphs (${wrongVersion} incorrect versions and ${crashes} test runner exceptions).`
-);
+if (!printGraphs)
+  console.log(
+    `\nTesting finished: ${successes}/${total} version-${VERSION} graphs passed. Skipped ${
+      wrongVersion + crashes
+    } graphs (${wrongVersion} incorrect versions and ${crashes} test runner exceptions).`
+  );
