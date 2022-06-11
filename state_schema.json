@@ -124,6 +124,9 @@
         },
         "polarMode": {
           "type": "boolean"
+        },
+        "userLockedViewport": {
+          "type": "boolean"
         }
       },
       "required": [

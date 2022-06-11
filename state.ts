@@ -56,6 +56,7 @@ export interface GrapherState {
   squareAxes?: boolean;
   restrictGridToFirstQuadrant?: boolean;
   polarMode?: boolean;
+  userLockedViewport?: boolean;
 }
 
 type Latex = string;
