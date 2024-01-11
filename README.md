@@ -1,3 +1,5 @@
+## Archived in favor of Monorepo: https://github.com/DesModder/DesModder
+
 # Graph State
 
 Typescript definitions for all possible Desmos graph states.
